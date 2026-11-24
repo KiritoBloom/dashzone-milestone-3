@@ -1,0 +1,13 @@
+# Secrets and local-only files. Never commit these.
+sql/.sa_password.txt
+backend/.env
+.env
+
+# Python
+backend/.venv/
+__pycache__/
+*.pyc
+
+# Node (frontend)
+frontend/node_modules/
+frontend/.next/

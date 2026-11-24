@@ -17,8 +17,8 @@ A web app on top of our Milestone 2 SQL Server database. The database is already
 
 ## How to run it
 
-1. In SQL Server, run the Milestone 2 database script, then `seed_data.sql`.
-2. Backend: `cd backend`, `pip install -r requirements.txt`, `uvicorn main:app --reload`
+1. In SQL Server, run the Milestone 2 database script (`sql/MS3_Database_Solution.sql`), then `sql/seed_data.sql`. The database is `LocalDeliveryMarketplace_Team_00`.
+2. Backend: `cd backend`, `python3 -m venv .venv`, `.venv/bin/pip install -r requirements.txt` (every version pinned; `requirements-lock.txt` is the full transitive lock), `cp .env.example .env` and set `DB_PASSWORD` to the SQL Server SA password, then `.venv/bin/python -m uvicorn main:app --port 8000 --reload`. Check it with `curl http://localhost:8000/health`. Run the test suite with `.venv/bin/python test_api.py` (100 checks, all passing).
 3. Frontend: `cd frontend`, `npm install`, `npm run dev`
 4. Test login: Super Admin, username `mona.hassan`, password `Pass@001`
 
@@ -102,6 +102,7 @@ Each person owns their part end to end: the API calls and the pages for it. If y
 
 ## Folder structure
 
-- `backend/` — FastAPI app (Mohamed)
+- `backend/` — FastAPI app (Mohamed). Complete and tested: 77 endpoints, `test_api.py` passes 100 of 100 checks against the live database. See `backend/README.md` for the full guide.
 - `frontend/` — Next.js app (everyone builds their pages here, inside the shared layout)
-- `sql/` — `Team_117.sql`, our own helper views and functions, only if we add any
+- `sql/` — the CMS database script (`MS3_Database_Solution.sql`), `seed_data.sql`, and `Team_117.sql` (our own helper views and functions, only if we add any). `reinstall-sqlserver.sh` reinstalls SQL Server on this VM if it is ever wiped.
+- `docs/` — `api-contract.md`, every endpoint mapped to its Milestone 2 procedure, function or view.
