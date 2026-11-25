@@ -36,6 +36,7 @@ Every endpoint returns the same shape:
 - `POST` for everything that changes something (procedures). No PATCH or DELETE, to keep it simple.
 - A failed validation in the frontend is shown before the request is sent. The backend still relies on the procedure's return code.
 - Report endpoints that take `?from=` and `?to=` default to the last 30 days up to today when either is omitted.
+- Pages link to each other through links, buttons and menus, not by changing the URL. Actions that cannot be undone (blacklisting, suspending, cancelling an order, deleting an address) ask the user to confirm first and say what will happen.
 
 ### Validation (frontend, before calling the backend)
 
@@ -193,4 +194,4 @@ Only the last 4 digits of a card number are ever shown. Checkout asks the user t
 
 1. Session tech: signed cookie sessions in FastAPI. Decided and implemented: the backend uses Starlette `SessionMiddleware` with a signed cookie holding `user_id`, `user_type` and `username`.
 2. The estimated arrival formula: decided and implemented. Per suborder on the way: ETA = `order_date` + (`expected_delivery_time` + zone average tracking time from `ZoneDeliveryPerformance`) minutes. The order ETA is the latest of its suborders; it is null when nothing is on the way.
-3. This contract covers every requirement in Milestone 3 sections 3.1 to 3.6. If a page needs data no helper provides, add your own helper SQL to `sql/MS3_Database_Solution.sql` and add the endpoint here.
+3. This contract covers every requirement in Milestone 3 sections 3.1 to 3.6. If a page needs data no helper provides, add your own helper SQL to `sql/Team_117.sql` and add the endpoint here.
