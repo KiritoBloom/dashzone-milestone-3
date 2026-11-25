@@ -501,7 +501,7 @@ def my_orders(user=customer_only):
         for sub in subs:
             if sub["status"] in ("Placed", "Assigned", "Picked Up") and order_dt is not None:
                 # Estimated arrival: business expected delivery time plus the
-                # zone's real average delivery time (contract open decision 2).
+                # zone's real average delivery time (contract decision 2).
                 minutes = float(sub.get("expected_delivery_time") or 0) + float(avg or 0)
                 eta = order_dt + timedelta(minutes=minutes)
                 sub["estimated_arrival"] = eta.isoformat()
